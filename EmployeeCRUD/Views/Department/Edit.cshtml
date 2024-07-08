@@ -1,0 +1,35 @@
+﻿@model EmployeeCRUD.Models.Department
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3 border border-4 rounded rounded-3 p-4">
+            <h3 class="text-info p-2 m-1 text-center">Update Department</h3>
+            <form asp-action="Edit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger text-center"></div>
+                <div class="form-check">
+                    <label asp-for="Name"></label>
+                    <input type="text" asp-for="Name" class="form-control" placeholder="Enter Department" />
+                    <input type="hidden" asp-for="Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-check">
+                    <input type="submit" value="Update" class="btn btn-sm btn-primary m-2 p-2 float-end" />
+                    <a asp-action="Index" class="btn btn-sm btn-info p-2 m-2">Back To List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
+

@@ -1,0 +1,107 @@
+﻿@model IEnumerable<EmployeeCRUD.Models.Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+@* <div class="container">
+    <div class="row">
+        @{
+            if (TempData["error"] != null)
+            {
+                <div class="alert alert-danger notification text-center">
+                    @TempData["error"]
+                </div>
+            }
+            if (TempData["success"] != null)
+            {
+                <div class="alert alert-success notification text-center">
+                    @TempData["success"]
+                </div>
+            }
+        }
+        <div class="col-12">
+            <div class="">
+                <h3 class="text-center text-primary">Employee Details</h3>
+                <a class="btn btn-sm btn-primary float-end p-2 m-2" asp-action="Create" asp-controller="Employee">Add Employee</a>
+            </div>
+            <table class="table table-hover table-striped table-bordered">
+                <thead class="text-center bg-dark text-light">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Salary</th>
+                        <th>Gender</th>
+                        <th>Blood Group</th>
+                        <th>Designation</th>
+                        <th>Department</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(Model != null){
+                        @foreach (var item in Model)
+                        {
+                            var imagepath = "Image/" + item.Path;
+                            <tr class="text-center">
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.Age</td>
+                                <td>@item.Salary</td>
+                                <td>@item.Gender</td>
+                                <td>@item.BloodGroup</td>
+                                <td>@item.Designations.Name</td>
+                                <td>@item.Departments.Name</td>
+                                <td>
+                                    <img src="~/@imagepath" alt="Employee Image" height="50px" width="50px" />
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-success m-1" asp-controller="Employee" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a class="btn btn-sm btn-info m-1" asp-controller="Employee" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                    <a class="btn btn-sm btn-danger m-1" asp-controller="Employee" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you Sure,You want to delete this recard')">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> *@
+
+
+<div class="container">
+    
+     <h3 class="text-center text-info">Employee Details</h3>
+    <a class="btn btn-sm btn-primary" asp-action="Create" asp-controller="Employee"><i class="fa-solid fa-plus"></i></a>
+
+</div>
+
+<div class="container">
+    @{
+        if (TempData["error"] != null)
+        {
+            <div class="alert alert-danger notification text-center">
+                @TempData["error"]
+            </div>
+        }
+        if (TempData["success"] != null)
+        {
+            <div class="alert alert-success notification text-center">
+                @TempData["success"]
+            </div>
+        }
+    }
+
+    <div class="row ">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 pb-3 pt-3">
+                <partial name="_EmployeePartialView" model="item" />
+            </div>
+        }
+    </div>
+</div>
